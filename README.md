@@ -10,9 +10,9 @@
 * Blog Post and Comments
 * Reddit/Twitter-esque blog
 * Sorted by...
-** Time of posts
-** User
-** Popularity (Upvotes, comments, etc)
-** Topic (tags)
+  * Time of posts
+  * User
+  * Popularity (Upvotes, comments, etc)
+  * Topic (tags)
 
 
