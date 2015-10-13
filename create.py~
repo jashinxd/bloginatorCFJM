@@ -1,0 +1,14 @@
+import sqlite3
+
+conn = sqlite3.connect("bloginator.db")
+c = conn.cursor()
+q = "create table users (uname text, password text, bio text)"
+c.execute(q)
+
+q = "create table blogpost (uname text, title text, content text, date integer, time integer, id integer)"
+c.execute(q)
+
+q = "create table comments (uname text, content text, date integer, time integer, id integer)"
+c.execute(q)
+
+conn.commit()
