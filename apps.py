@@ -26,7 +26,7 @@ def login():
                 error = "Username not in our database."
             return render_template("login.html", err = error)
 @app.route("/register")
-def register():
+#def register():
     
 if __name__ == "__main__":
    app.debug = True
