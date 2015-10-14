@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<style>
+a:hover {
+    background-color: gainsboro;
+    font-size: 120%;
+}
+#header {
+    background-color: green;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:300px;
+    width:100px;
+    float:left;
+    padding:5px; 
+}
+#section {
+    width:350px;
+    float:left;
+    padding:10px; 
+    text-align:center;
+}
+#footer {
+    background-color: limegreen;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px; 
+}
+</style>
+<body>
+
+<div id="header">
+<h1>BLOG CFJM</h1>
+</div>
+
+<div id="nav">
+<a>Home</a>
+<br>
+<a>About</a>
+<br>
+<a>Login</a>
+<br>
+<a>Sign up</a>
+</div>
+
+<div id="section">
+<h1>Log-in</h1>
+{% if err %}
+<h3>{{err}}</h3>
+<hr>
+
+{% endif %}
+<form method="POST">
+  Userame: <input type="text" name = "username"><br>
+  Password: <input type="password" name = "password"><br><br>
+  <input type="submit" name="button" value="Login">
+  <input type="submit" name="button" value="Cancel">
+</form>
+
+<div id="footer">
+Bloginator project - StuySoftDev Group 8
+</div>
+
+</body>
