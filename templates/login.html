@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
 <style>
-
 a:hover {
     background-color: gainsboro;
     font-size: 120%;
 }
-
 #header {
     background-color: green;
     color:white;
@@ -34,7 +32,6 @@ a:hover {
     text-align:center;
     padding:5px; 
 }
-
 </style>
 <body>
 
@@ -53,13 +50,21 @@ a:hover {
 </div>
 
 <div id="section">
-<h1>BLOGS</h1>
-***Where Blogs are going to be posted***
-</div>
+<h1>Log-in</h1>
+{% if err %}
+<h3>{{err}}</h3>
+<hr>
+
+{% endif %}
+<form method="POST">
+  Userame: <input type="text" name = "username"><br>
+  Password: <input type="password" name = "password"><br><br>
+  <input type="submit" name="button" value="Login">
+  <input type="submit" name="button" value="Cancel">
+</form>
 
 <div id="footer">
 Bloginator project - StuySoftDev Group 8
 </div>
 
 </body>
-</html>
