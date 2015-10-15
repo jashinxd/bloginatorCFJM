@@ -17,6 +17,7 @@ def updateUsers():
         q=TEMPLATE%item
         #print q
         c.execute(q)
+    conn.commit()
 
 #Updating User Bios
 def updateBios():
@@ -31,7 +32,8 @@ def updateBios():
         q=TEMPLATE%item
         #print q
         c.execute(q)
-        
+    conn.commit()
+
 #Updating Blogposts
 def updatePosts():
     q="DELETE FROM blogpost"
@@ -42,11 +44,12 @@ def updatePosts():
     INSERT INTO blogpost
     VALUES ("%(uname)s","%(title)s","%(content)s",%(date)s,%(time)s,%(id)s)
     """
-reader = csv.DictReader(open("blogpost.csv"))
-for item in reader:
-    q=TEMPLATE%item
-    #print q
-    c.execute(q)
+    reader = csv.DictReader(open("blogpost.csv"))
+    for item in reader:
+        q=TEMPLATE%item
+        #print q
+        c.execute(q)
+    conn.commit()
 
 #Updating Comments
 def updateComments():
@@ -56,14 +59,9 @@ def updateComments():
     INSERT INTO comments
     VALUES ("%(uname)s","%(comment)s",%(date)s,%(time)s,%(id)s)
     """
-reader = csv.DictReader(open("comments.csv"))
-for item in reader:
-    q=TEMPLATE%item
-    #print q
-    c.execute(q)
-
-updateUsers()
-updateComments()
-updateBios()
-updatePosts()
-conn.commit()
+    reader = csv.DictReader(open("comments.csv"))
+    for item in reader:
+        q=TEMPLATE%item
+        #print q
+        c.execute(q)
+    conn.commit()
