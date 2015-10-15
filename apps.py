@@ -4,6 +4,8 @@ import utils
 app = Flask(__name__)
 
 @app.route("/")
+@app.route("/home")
+@app.route("/home/")
 def index():
     return render_template("home.html")
 
@@ -25,7 +27,7 @@ def login():
             else:
                 error = "Username not in our database."
             return render_template("login.html", err = error)
-@app.route("/register")
+#@app.route("/register")
 #def register():
     
 if __name__ == "__main__":
