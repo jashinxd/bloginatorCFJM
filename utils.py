@@ -9,7 +9,6 @@ def csv_dict():
     for item in reader:
         print TEMPLATE%(username)
         
-        
 def authenticate(uname,pword):
     if uname == "cindyli" and pword == "cindy":
         return True
@@ -21,4 +20,3 @@ def authenticate(uname,pword):
         return True
     else:
         return False
-
