@@ -1,11 +1,21 @@
-import sqlite3
-import csv
+import sqlite3, csv, hashlib
+
+"""
+updateUsers(): --> Updates the user table in bloginator.db from users.csv
+updateBios(): --> Updates the bio table in bloginator.db from bio.csv
+updatePosts(): --> Updates the blogpost table in bloginator.db from blogpost.csv
+updateComments(): --> Updates the comments table in bloginator.db from comments
+getInfo(table, retAttribute, attribute, value): --> takes the table name, return attrubute, attribute of value, and value, returns value of what you are looking for. Will search in database by:
+ SELECT retAttribute FROM table WHERE attribute=value
+authenPass(username, password) --> Takes username and password submitted on
+website. Will return bool.
+"""
 
 conn = sqlite3.connect("bloginator.db")
 c = conn.cursor()
 TEMPLATE = ""
 
-#Updating Users
+#Update Users
 def updateUsers():
     q="DELETE FROM users"
     c.execute(q)
@@ -67,12 +77,20 @@ def updateComments():
     conn.commit()
 
 def getInfo(table, retAttribute, attribute, value):
-    q="SELECT "+retAttribute+" FROM "+table+" where "+attribute+"="+value
+    q="SELECT "+retAttribute+" FROM "+table+" where "+attribute+"="+'"'+value+'"'
     c.execute(q)
-    return c.fetchone()
+    return c.fetchone()[0]
 
 def authenPass(username, password):
-    if getInfo("users", "password", "uname", username) = password:
-        
+    if (username == "" or password == ""):
+        return False
+    if getInfo("users", "password", "uname", username) == hashlib.md5(password):
+        return True
+    else: 
+        return False
 
-print getInfo("users", "password", "uname", '"franklin"')
+#def getBlogposts(sortByWhat, 
+
+#print "" + getInfo("users", "password", "uname", "franklin")
+#print "Authen pass: " + str(authenPass("franklin", "wangboi"))
+
