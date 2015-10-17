@@ -17,6 +17,7 @@ TEMPLATE = ""
 
 #Update Users
 def updateUsers():
+    
     q="DELETE FROM users"
     c.execute(q)
     TEMPLATE="""INSERT INTO users
@@ -77,6 +78,9 @@ def updateComments():
     conn.commit()
 
 def getInfo(table, retAttribute, attribute, value):
+    conn = sqlite3.connect("bloginator.db")
+    c = conn.cursor()
+    TEMPLATE = ""
     q="SELECT "+retAttribute+" FROM "+table+" where "+attribute+"="+'"'+value+'"'
     c.execute(q)
     return c.fetchone()[0]
