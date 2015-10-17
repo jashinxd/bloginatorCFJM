@@ -1,28 +1,3 @@
-"""
-import sqlite3, csv
-
-conn = sqlite3.connect("demo.db")
-c = conn.cursor()
-
-def csv_dict():
-    reader = csv.DictReader(open("users.csv"))
-    TEMPLATE = "username: %(username)s, password: %(password)s)"
-    for item in reader:
- #       print TEMPLATE%(username)
-            
-def authenticate(uname,pword):updatetables.
-    if uname == "cindyli" and pword == "cindy":
-        return True
-    if uname == "jasonshin" and pword == "jason":
-        return True
-    if uname == "franklinwang" and pword == "franklin":
-        return True
-    if uname == "masaheromasuda" and pword == "masahero":
-        return True
-    else:
-        return False
-"""
-
 import sqlite3, csv, hashlib
 
 """
@@ -79,6 +54,7 @@ def updatePosts():
     INSERT INTO blogpost
     VALUES ("%(uname)s","%(title)s","%(content)s",%(date)s,%(time)s,%(id)s)
     """
+
     reader = csv.DictReader(open("blogpost.csv"))
     for item in reader:
         q=TEMPLATE%item
@@ -119,4 +95,3 @@ def authenticate(username, password):
 #print "" + getInfo("users", "password", "uname", "franklin")
 #print "Authen pass: " + str(authenPass("franklin", "wangboi"))
 
- 
