@@ -1,6 +1,22 @@
 import sqlite3, csv, hashlib
 
-<<<<<<< HEAD
+"""
+def authenticate(uname,pword):
+    reader = csv.DictReader(open("users.csv"))
+    for i in reader:
+        #print i['uname']
+        if uname == i['uname'] and pword == i['password']:
+            return True
+            
+    #updatetables.authenPass("franklin", "wangboi")
+
+def validuname(uname):
+    reader = csv.DictReader(open("users.csv"))
+    for i in reader: 
+        if uname == i['uname']:
+            return True
+"""
+
 """
 updateUsers(): --> Updates the user table in bloginator.db from users.csv
 updateBios(): --> Updates the bio table in bloginator.db from bio.csv
@@ -37,23 +53,6 @@ def updateBios():
     TEMPLATE="""
     INSERT INTO bio
     VALUES ("%(uname)s",%(age)s,"%(gender)s","%(descript)s")
-=======
-def authenticate(uname,pword):
-    reader = csv.DictReader(open("users.csv"))
-    for i in reader:
-        #print i['uname']
-        if uname == i['uname'] and pword == i['password']:
-            return True
-            
-    #updatetables.authenPass("franklin", "wangboi")
-
-def validuname(uname):
-    reader = csv.DictReader(open("users.csv"))
-    for i in reader: 
-        if uname == i['uname']:
-            return True
-
->>>>>>> e9c7642857795a7ec0f1a34ef588898b81d6566c
     """
     reader = csv.DictReader(open("bio.csv"))
     for item in reader:
