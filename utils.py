@@ -1,5 +1,9 @@
 import sqlite3, csv, hashlib, updatetables
 
+conn = sqlite3.connect("bloginator.db")
+c = conn.cursor()
+TEMPLATE = ""
+
 def authenticate(uname,pword):
     """
     reader = csv.DictReader(open("users.csv"))
