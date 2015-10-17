@@ -1,4 +1,4 @@
-import sqlite3, csv, hashlib, updatetables, datetime
+import sqlite3, csv, hashlib, datetime
 from datetime import date
 
 conn = sqlite3.connect("bloginator.db")
