@@ -1,15 +1,5 @@
 import sqlite3, csv, updatetables
 
-"""
-conn = sqlite3.connect("bloginator.db")
-c = conn.cursor()
-
-def csv_dict():
-    reader = csv.DictReader(open("users.csv"))
-    TEMPLATE = "username: %(username)s, password: %(password)s)"
-#    for item in reader:
- #       print TEMPLATE%(username)
-"""         
 def authenticate(uname,pword):
     reader = csv.DictReader(open("users.csv"))
     for i in reader:
@@ -18,6 +8,13 @@ def authenticate(uname,pword):
             return True
             
     #updatetables.authenPass("franklin", "wangboi")
+
+def validuname(uname):
+    reader = csv.DictReader(open("users.csv"))
+    for i in reader: 
+        if uname == i['uname']:
+            return True
+
     """
     if uname == "cindyli" and pword == "cindy":
         return True

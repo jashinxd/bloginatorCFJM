@@ -23,6 +23,7 @@ def login():
         else:
             if utils.validuname(uname):
                 error = "Username and password do not match."
+                return render_template("login.html", err = error)
             else:
                 error = "Username not in our database."
                 return render_template("login.html", err = error)
