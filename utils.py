@@ -11,6 +11,12 @@ def csv_dict():
  #       print TEMPLATE%(username)
 """         
 def authenticate(uname,pword):
+    reader = csv.DictReader(open("users.csv"))
+    for i in reader:
+        #print i['uname']
+        if uname == i['uname'] and pword == i['password']:
+            return True
+            
     updatetables.authenPass("franklin", "wangboi")
     """
     if uname == "cindyli" and pword == "cindy":
