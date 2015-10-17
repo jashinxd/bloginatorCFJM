@@ -102,7 +102,7 @@ def authenticate(username, password):
     inputPass = hashlib.md5(password)
     if (username == "" or password == ""):
         return False
-    if getInfo("users", "password", "uname", username) == inputPass.hexdigest()):
+    if getInfo("users", "password", "uname", username) == inputPass.hexdigest():
         return True
     else: 
         return False
