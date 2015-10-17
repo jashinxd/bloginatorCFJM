@@ -99,9 +99,10 @@ def getInfo(table, retAttribute, attribute, value):
     return c.fetchone()[0]
 
 def authenticate(username, password):
+    inputPass = hashlib.md5(password)
     if (username == "" or password == ""):
         return False
-    if getInfo("users", "password", "uname", username) == str(hashlib.md5(password)):
+    if getInfo("users", "password", "uname", username) == inputPass.hexdigest()):
         return True
     else: 
         return False
