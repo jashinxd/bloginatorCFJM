@@ -31,6 +31,23 @@ def login():
 def about():
     return render_template("about.html")
 
+@app.route("/register", methods=["GET","POST"])
+def register(): 
+    if request.method == "GET":
+        return render_template("register.html")
+    else:
+        uname = request.form['username']
+        pword = request.form['password']
+        button = request.form['button']
+        if button == "cancel":
+            return render_template("register.html")
+        if utils.validuname(uname):
+            error = "Username already exists. Please try again."
+            return render_template("register.html", err = error)
+        else:
+            utils.register(uname, pword)
+            return render_template("home.html", user = uname)
+    
 if __name__ == "__main__":
     app.debug = True
     app.secret_key = "Don't put on git"

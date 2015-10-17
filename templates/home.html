@@ -49,6 +49,10 @@ background-color: limegreen;
   <div id = "wrapper">
     <div id="header">
       <h1>BLOG CFJM</h1>
+      <p align="right">
+        {% if uname %}
+        {{"Hey," + uname}}
+        {% endif %}
     </div>
     
     <div id="nav">
@@ -58,7 +62,7 @@ background-color: limegreen;
       <br>
       <a href="/login">Login</a>
       <br>
-      <a>Sign up</a>
+      <a href="/register">Sign up</a>
     </div>
     
     <div id="section">

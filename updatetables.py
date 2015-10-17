@@ -17,7 +17,9 @@ TEMPLATE = ""
 
 #Update Users
 def updateUsers():
-    
+    conn = sqlite3.connect("bloginator.db")
+    c = conn.cursor()
+    TEMPLATE = ""
     q="DELETE FROM users"
     c.execute(q)
     TEMPLATE="""INSERT INTO users
@@ -32,6 +34,9 @@ def updateUsers():
 
 #Updating User Bios
 def updateBios():
+    conn = sqlite3.connect("bloginator.db")
+    c = conn.cursor()
+    TEMPLATE = ""
     q="DELETE FROM bio"
     c.execute(q)
     TEMPLATE="""
@@ -47,6 +52,9 @@ def updateBios():
 
 #Updating Blogposts
 def updatePosts():
+    conn = sqlite3.connect("bloginator.db")
+    c = conn.cursor()
+    TEMPLATE = ""
     q="DELETE FROM blogpost"
     c.execute(q)
     #date --> MMDDYY
@@ -92,9 +100,10 @@ def authenPass(username, password):
         return True
     else: 
         return False
+        
+def register(username, password
 
 #def getBlogposts(sortByWhat, 
 
 #print "" + getInfo("users", "password", "uname", "franklin")
 #print "Authen pass: " + str(authenPass("franklin", "wangboi"))
-
