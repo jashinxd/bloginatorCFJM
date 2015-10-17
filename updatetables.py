@@ -65,3 +65,14 @@ def updateComments():
         #print q
         c.execute(q)
     conn.commit()
+
+def getInfo(table, retAttribute, attribute, value):
+    q="SELECT "+retAttribute+" FROM "+table+" where "+attribute+"="+value
+    c.execute(q)
+    return c.fetchone()
+
+def authenPass(username, password):
+    if getInfo("users", "password", "uname", username) = password:
+        
+
+print getInfo("users", "password", "uname", '"franklin"')
