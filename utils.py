@@ -1,6 +1,7 @@
 import sqlite3, csv, updatetables
 
-conn = sqlite3.connect("demo.db")
+"""
+conn = sqlite3.connect("bloginator.db")
 c = conn.cursor()
 
 def csv_dict():
@@ -8,7 +9,7 @@ def csv_dict():
     TEMPLATE = "username: %(username)s, password: %(password)s)"
 #    for item in reader:
  #       print TEMPLATE%(username)
-            
+"""         
 def authenticate(uname,pword):
     updatetables.authenPass("franklin", "wangboi")
     """
@@ -23,3 +24,4 @@ def authenticate(uname,pword):
     else:
         return False
     """
+    
