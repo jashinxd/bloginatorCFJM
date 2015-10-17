@@ -81,7 +81,7 @@ def updateComments():
     c.execute(q)
     TEMPLATE="""
     INSERT INTO comments
-    VALUES ("%(uname)s","%(comment)s",%(date)s,%(time)s,%(id)s)
+    VALUES ("%(uname)s","%(content)s",%(date)s,%(time)s,%(id)s)
     """
     reader = csv.DictReader(open("comments.csv"))
     for item in reader:
@@ -101,17 +101,24 @@ def getInfo(table, retAttribute, attribute, value):
 def authenticate(username, password):
     if (username == "" or password == ""):
         return False
-    if getInfo("users", "password", "uname", username) == hashlib.md5(password):
+    if getInfo("users", "password", "uname", username) == str(hashlib.md5(password)):
         return True
     else: 
         return False
         
 def register(username, password, age, gender):
-    accountwriter = csv.writer("users.csv")
-    accountwriter.writerow(username,hashlib.md5(password))
-    biowriter = csv.writer("bio.csv")
-    content = ""
-    biowriter.writerow(username, age, gender, content)
+    with open ("users.csv", 'ab') as f:
+        accountwriter = csv.writer(f)
+        m = hashlib.md5(password)
+        accountwriter.writerow([username, m.hexdigest()])
+        f.close()
+    
+    with open ("bio.csv", 'ab') as f:    
+        biowriter = csv.writer(f)
+        content = ""
+        biowriter.writerow([username, str(age), gender, content])
+        f.close()
+        
     updateUsers()
     updateBios()
     
@@ -119,27 +126,42 @@ def postBlog(username, title, content):
     reader = csv.DictReader(open("blogpost.csv"))
     postDict = {}
     for row in reader:
-        postDict = row
-    if (postDict):
+        print row
+        if (row):
+           postDict = row
+    print postDict.keys()
+    if (postDict == {}):
         newid = 0
     else:
-        newid = postDict['id'] + 1
+        newid = int(postDict["id"]) + 1
     currtime = datetime.datetime.time(datetime.datetime.now())
+    currtime = str(currtime)[0:8]
+    currtime = currtime.replace(":","")
     currdate = date.today()
-    writer = csv.writer("blogpost.csv")
-    writer.writerow(username,title,content,currdate,currtime,newid)
+    with open ("blogpost.csv", 'ab') as f:
+        writer = csv.writer(f)
+        writer.writerow([username, title, content, str(currdate), str(currtime), str(newid)])
+        f.close()
+        
     updatePosts()
     
 def postComment(username, content, ID):
     currtime = datetime.datetime.time(datetime.datetime.now())
+    currtime = str(currtime)[0:8]
+    currtime = currtime.replace(":","")
     currdate = date.today()
-    writer = csv.writer("comments.csv")
-    writer.writerow(username,content,currdate,currtime,ID)
+    with open("comments.csv", 'ab') as f:
+        writer = csv.writer(f)
+        writer.writerow([username, content, str(currdate), str(currtime), str(ID)])
+        f.close()
+        
     updateComments()
     
 def editBio(username, age, gender, descript):
-    reader = csv.DictReader("bio.csv")
-    writer = csv.writer("bio.csv")
+    reader = csv.DictReader(open("bio.csv"))
+    with open("bio.csv", "ab") as f:
+        writer = csv.writer(f)
+        f.close()
     for line in reader:
         if (username == line["username"]):
             line["age"] = age

@@ -76,7 +76,7 @@ def updateComments():
     c.execute(q)
     TEMPLATE="""
     INSERT INTO comments
-    VALUES ("%(uname)s","%(comment)s",%(date)s,%(time)s,%(id)s)
+    VALUES ("%(uname)s","%(content)s",%(date)s,%(time)s,%(id)s)
     """
     reader = csv.DictReader(open("comments.csv"))
     for item in reader:
