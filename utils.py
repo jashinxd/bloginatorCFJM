@@ -17,7 +17,7 @@ def authenticate(uname,pword):
         if uname == i['uname'] and pword == i['password']:
             return True
             
-    updatetables.authenPass("franklin", "wangboi")
+    #updatetables.authenPass("franklin", "wangboi")
     """
     if uname == "cindyli" and pword == "cindy":
         return True
