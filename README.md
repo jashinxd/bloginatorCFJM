@@ -19,7 +19,7 @@
 
 ##Instructions:
 1. Run apps.py
-    `python apps.py`
+    - `python apps.py`
 2. Go to http://localhost:8700/ in the browser of your choice
 3. Go wild 
     - create own username and password or browse without one! 
