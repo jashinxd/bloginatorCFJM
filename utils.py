@@ -28,7 +28,7 @@ def updateUsers():
     q="DELETE FROM users"
     c.execute(q)
     TEMPLATE="""INSERT INTO users
-    VALUES ("%(uname)s","%(password)s")
+    VALUES ("%(uname)s","%(password)s", "%(id)s")
     """
     reader = csv.DictReader(open("users.csv"))
     for item in reader:
@@ -93,10 +93,21 @@ def updateComments():
 def getInfo(table, retAttribute, attribute, value):
     conn = sqlite3.connect("bloginator.db")
     c = conn.cursor()
-    TEMPLATE = ""
     q="SELECT "+retAttribute+" FROM "+table+" where "+attribute+"="+'"'+value+'"'
     c.execute(q)
     return c.fetchone()[0]
+
+#asc == False --> sorts descending
+#asc == True --> sorts ascending
+def getMoreInfo(table, order, asc):
+    conn = sqlite3.connect("bloginator.db")
+    c = conn.cursor()
+    q="SELECT * FROM "+table+" ORDER BY "+order
+    if not asc:
+        q+=" DESC"
+    c.execute(q)
+    #print c.fetchall()
+    return c.fetchall()
 
 def authenticate(username, password):
     inputPass = hashlib.md5(password)
@@ -108,10 +119,21 @@ def authenticate(username, password):
         return False
         
 def register(username, password, age, gender):
+    reader = csv.DictReader(open("users.csv"))
+    userDict = {}
+    for row in reader:
+        print row
+        if (row):
+           userDict = row
+    print userDict.keys()
+    if (userDict == {}):
+        newid = 0
+    else:
+        newid = int(userDict["id"]) + 1
     with open ("users.csv", 'ab') as f:
         accountwriter = csv.writer(f)
         m = hashlib.md5(password)
-        accountwriter.writerow([username, m.hexdigest()])
+        accountwriter.writerow([username, m.hexdigest(), newid])
         f.close()
     
     with open ("bio.csv", 'ab') as f:    
@@ -158,16 +180,21 @@ def postComment(username, content, ID):
         
     updateComments()
     
-def editBio(username, age, gender, descript):
+def editBio(username, age, gender, descript, id):
+    newAge = 0
+    newGender = ""
+    newDescript = ""
+    newUsername = ""
     reader = csv.DictReader(open("bio.csv"))
-    with open("bio.csv", "ab") as f:
+    with open("bio.csv", "wb") as f:
         writer = csv.writer(f)
+        for line in reader:
+            print line
+            if id == line["id"]:
+                writer.writerow([line["username"], str(line["age"]), line["gender"], line["descript"], str(id)])
+            #else:
+                #writer.writerow(line)
         f.close()
-    for line in reader:
-        if (username == line["username"]):
-            line["age"] = age
-            line["gender"] = gender
-            line["descript"] = descript
     updateBios()
     
 def validuname(uname):
@@ -176,6 +203,8 @@ def validuname(uname):
         if uname == i['uname']:
             return True
 
-register("danKim", "dannyboi", 13, "F")
-postBlog("franklin", "who is dan", "idk anything about this kid")
-postComment("danKim", "hey not cool man", 3)
+#register("danKim", "dannyboi", 13, "F")
+#postBlog("franklin", "who is dan", "idk anything about this kid")
+#postComment("danKim", "hey not cool man", 0)
+#editBio("danKim", 17, "M", "I love math", 0)
+print(getMoreInfo("users", "uname", True))
