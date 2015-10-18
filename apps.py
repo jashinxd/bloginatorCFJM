@@ -39,6 +39,8 @@ def register():
         uname = request.form['username']
         pword = request.form['password']
         button = request.form['button']
+        age = request.form['age']
+        gender = request.form['gender']
         if button == "cancel":
             return render_template("register.html")
         if utils.validuname(uname):
@@ -48,7 +50,7 @@ def register():
             error = "Both username and password fields must be filled in. Please try again."
             return render_template("register.html", err = error)
         else:
-            utils.register(uname, pword)
+            utils.register(uname, pword, age, gender)
             return render_template("home.html", user = uname)
     
 if __name__ == "__main__":
