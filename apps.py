@@ -44,6 +44,9 @@ def register():
         if utils.validuname(uname):
             error = "Username already exists. Please try again."
             return render_template("register.html", err = error)
+        if uname == "" or pword == "":
+            error = "Both username and password fields must be filled in. Please try again."
+            return render_template("register.html", err = error)
         else:
             utils.register(uname, pword)
             return render_template("home.html", user = uname)
