@@ -19,7 +19,8 @@ def login():
         if button == "cancel":
             return render_template("login.html")
         if utils.authenticate(uname,pword):
-            return render_template("home.html")
+            session['user'] = uname
+                return redirect(url_for("home"))
         else:
             if utils.validuname(uname):
                 error = "Username and password do not match."
