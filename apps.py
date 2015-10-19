@@ -20,7 +20,7 @@ def login():
             return render_template("login.html", link = "/login", state = "Login")
         if utils.authenticate(uname,pword):
             session['user'] = uname
-                return redirect(url_for("home", link = "/login", state = "Login"))
+            return redirect(url_for("home", link = "/login", state = "Login"))
         else:
             if utils.validuname(uname):
                 error = "Username and password do not match."
