@@ -115,8 +115,6 @@ def authenticate(username, password):
         return False
     if getInfo("users", "password", "uname", username) == inputPass.hexdigest():
         return True
-    else: 
-        return False
         
 def register(username, password, age, gender):
     reader = csv.DictReader(open("users.csv"))
