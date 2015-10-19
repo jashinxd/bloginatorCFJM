@@ -56,7 +56,7 @@ def register():
             return render_template("register.html", err = error)
         else:
             utils.register(uname, pword, age, gender)
-            return render_template("home.html", user = uname)
+            return render_template("login.html")
     
 if __name__ == "__main__":
     app.debug = True
