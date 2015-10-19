@@ -27,6 +27,11 @@ def login():
             else:
                 error = "Username not in our database."
                 return render_template("login.html", err = error)
+
+@app.route("/logout")
+def logout():
+    
+
 @app.route("/about")
 def about():
     return render_template("about.html")
