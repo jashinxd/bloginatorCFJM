@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head><title>CFJM | Contact Us</title>
 <style>
@@ -6,7 +7,6 @@ body {
   font-weight: 300;
   font-size: 30px;
 }
-
 nav {
   background-color: #F0F8FF;
   color: #1E90FF;
@@ -16,12 +16,10 @@ nav {
   overflow: hidden;
   width: 90%; 
 }
-
 nav ul {
     margin: 0;
     padding: 0;
  }
-
 nav ul li {
     display: inline-block;
 }
@@ -33,12 +31,10 @@ nav > ul > li > a {
       padding: 0 24px;
       text-decoration: none;
 }
-
 nav > ul > li:hover {
      background-color: #A9A9A9;
 }
-
-form {
+p {
   background-color: #AFEEEE;
   color: #1E90FF;
   border: 1px solid #dedede;
@@ -57,8 +53,8 @@ form {
   <ul>
                 <b><font size="10" face="impact">CFJM</font></b>
 		<li><a href="home.html"><font color="sky blue">Home</font></a></li>
-                <li><a href="login.html"><font color="sky blue">Log in</font></a></li>
-                <li><a href="register.html"><font color="sky blue">Sign-up</font></a></li>
+                <li><a href="login.py"><font color="sky blue">Log in</font></a></li>
+                <li><a href="register.html"><font color="sky blue">Sign Up</font></a></li>
 		<li><a href="about.html"><font color="sky blue">About</font></a></li>
 		<li><a href="contact.html"><font color="sky blue">Contact us</font></a></li>
 		</ul>
@@ -66,32 +62,13 @@ form {
 
 <body>
 
-<div class="box" align="center">
-  <br><br>
-  <font face="Lucida Grande" color="#E0E0E0 " size="3">
 
-   <h2><font size = "6">Send an email to CFJM:</font></h2>
-
-<font size ="5"><b>
-<form action="MAILTO:masahero55@gmail.com" method="post" enctype="text/plain">
-<br>
-Name:
-<input type="text" name="name" value="Name">
-<br><br>
-E-mail:
-<input type="text" name="mail" value="Email address">
-<br>
-<br>
-Comment:
-<input type="text" name="comment" value="Comment" size="50"><br><br>
-<input type="submit" value="Send">
-<input type="reset" value="Reset">
-</form>
-</font></b>
-
-</body>
-</html>
-</div>
+<h1>About</h1>
+<p>
+Made by Cindy, Jason, Franklin, and Masahero, this is a website that tries to mimic Reddit and Twitter. <br>
+Posts are viewed by post date (and popularity, user, and topic in the future hopefully). <br>
+Users will be able to log in and make their own posts and comments.<br>
+</p>
 
 </body>
 </html>
