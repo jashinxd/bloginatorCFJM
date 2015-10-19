@@ -202,6 +202,7 @@ def validuname(uname):
     for i in reader: 
         if uname == i['uname']:
             return True
+    return False
 
 #register("danKim", "dannyboi", 13, "F")
 #postBlog("franklin", "who is dan", "idk anything about this kid")
