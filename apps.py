@@ -4,8 +4,8 @@ import utils
 app = Flask(__name__)
 @app.route("/")
 @app.route("/home")
-@app.route("/home/")
-def index():
+def home():
+    post = request.form['story']
     return render_template("home.html", link = "/login", state = "Login")
 
 @app.route("/login", methods=["GET","POST"])
