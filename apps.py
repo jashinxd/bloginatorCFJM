@@ -6,11 +6,11 @@ app = Flask(__name__)
 @app.route("/home")
 @app.route("/home/")
 def home():
-    if button == "Cancel":
-        return render_template("home.html", link = "/login", state = "Login")
-    if button == "Post":
-        post = request.form['story']
-        return render_template("login.html", link = "/login", state = "Login")
+    #if button == "Cancel":
+    #   return render_template("home.html", link = "/login", state = "Login")
+    #if button == "Post":
+    #    post = request.form['story']
+    #    return render_template("login.html", link = "/login", state = "Login")
     return render_template("home.html", link = "/login", state = "Login")
 
 @app.route("/login", methods=["GET","POST"])
