@@ -5,7 +5,11 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/home")
 def home():
-    post = request.form['story']
+    if button == "Cancel":
+        return render_template("home.html", link = "/login", state = "Login")
+    if button == "Post":
+        post = request.form['story']
+        return render_template("login.html", link = "/login", state = "Login")
     return render_template("home.html", link = "/login", state = "Login")
 
 @app.route("/login", methods=["GET","POST"])
