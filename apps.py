@@ -4,6 +4,7 @@ import utils
 app = Flask(__name__)
 @app.route("/")
 @app.route("/home")
+@app.route("/home/")
 def home():
     if button == "Cancel":
         return render_template("home.html", link = "/login", state = "Login")
