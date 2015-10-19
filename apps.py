@@ -30,6 +30,9 @@ def login():
 
 @app.route("/logout")
 def logout():
+    session['user'] = 0
+    print (session['user'])
+    return redirect(url_for("log_in"))
     
 
 @app.route("/about")
