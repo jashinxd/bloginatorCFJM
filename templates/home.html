@@ -83,6 +83,7 @@ p {
 <font size = "4"><b>
 <form method="POST">
 <br>
+Title: <input type="text" name = "title"></textarea><br><br>
 <textarea rows = "20" cols = "50" name = "story"></textarea>
 <br>
 <input type="submit" name="button" value="Post">
@@ -94,7 +95,7 @@ p {
 <br><hr>
 <font size = "4">
 {% for keys in posts %}
-{{ "<b>Title: </b>" | safe + keys['title'] + "<br><b> Author: </b>" | safe + keys['uname'] + "<br><small>" | safe + keys['date'] + " at: " | safe + keys['time'] + "</small><br>" | safe + keys['content'] +"<br><hr><br><br>" | safe}}
+{{ "<b>Title: </b>" | safe + keys['title'] + "<br><b> Author: </b>" | safe + keys['uname'] + "<br><small>" | safe + keys['date'] + " at: " | safe + keys['time'] + "</small><br>" | safe + keys['content'] +"<br><hr>" | safe}}
 {% endfor %}
 </center>
 

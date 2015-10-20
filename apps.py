@@ -2,16 +2,26 @@ from flask import Flask, render_template, request, session, redirect, url_for
 import utils, csv
 
 app = Flask(__name__)
-@app.route("/")
-@app.route("/home")
-@app.route("/home/")
+@app.route("/", methods=["GET","POST"])
+@app.route("/home", methods=["GET","POST"])
+@app.route("/home/", methods=["GET","POST"])
 def home():
     #if button == "Cancel":
     #   return render_template("home.html", link = "/login", state = "Login")
     #if button == "Post":
     #    post = request.form['story']
     #    return render_template("login.html", link = "/login", state = "Login")
-
+    if request.method == "GET":
+        return render_template("home.html", link = "/login", state = "Login")
+    else:
+        button = request.form['button']
+        title = request.form['title']
+        post = request.form['story']
+        user = session['user']
+        if button == "cancel":
+            return render_template("home.html", link = "/login", state = "Login")
+        else:
+            utils.postBlog(user, title, post)
     reader = csv.DictReader(open("blogpost.csv"))
     return render_template("home.html", link = "/login", state = "Login", posts = reader)
 
@@ -20,7 +30,7 @@ def login():
     if request.method == "GET":
         return render_template("login.html", link = "/login", state = "Login")
     else:
-        uname = request.form['username']
+        uname = request.form['username'] 
         pword = request.form['password']
         button = request.form['button']
         if button == "cancel":
