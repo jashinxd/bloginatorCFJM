@@ -36,6 +36,7 @@ def updateUsers():
         #print q
         c.execute(q)
     conn.commit()
+    conn.close()
 
 #Updating User Bios
 def updateBios():
@@ -54,6 +55,7 @@ def updateBios():
         #print q
         c.execute(q)
     conn.commit()
+    conn.close()
 
 #Updating Blogposts
 def updatePosts():
@@ -74,6 +76,7 @@ def updatePosts():
         #print q
         c.execute(q)
     conn.commit()
+    conn.close()
 
 #Updating Comments
 def updateComments():
@@ -89,13 +92,16 @@ def updateComments():
         #print q
         c.execute(q)
     conn.commit()
+    conn.close()
 
 def getInfo(table, retAttribute, attribute, value):
     conn = sqlite3.connect("bloginator.db")
     c = conn.cursor()
     q="SELECT "+retAttribute+" FROM "+table+" where "+attribute+"="+'"'+value+'"'
     c.execute(q)
-    return c.fetchone()[0]
+    ret = c.fetchone()[0]
+    conn.close()
+    return ret
 
 #asc == False --> sorts descending
 #asc == True --> sorts ascending
@@ -106,8 +112,10 @@ def getMoreInfo(table, order, asc):
     if not asc:
         q+=" DESC"
     c.execute(q)
+    ret = c.fetchall()
+    conn.close()
     #print c.fetchall()
-    return c.fetchall()
+    return ret
 
 def authenticate(username, password):
     inputPass = hashlib.md5(password)
@@ -115,6 +123,8 @@ def authenticate(username, password):
         return False
     if getInfo("users", "password", "uname", username) == inputPass.hexdigest():
         return True
+    else:
+        return False
         
 def register(username, password, age, gender):
     reader = csv.DictReader(open("users.csv"))
