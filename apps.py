@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-import utils
+import utils, csv
 
 app = Flask(__name__)
 @app.route("/")
@@ -11,7 +11,9 @@ def home():
     #if button == "Post":
     #    post = request.form['story']
     #    return render_template("login.html", link = "/login", state = "Login")
-    return render_template("home.html", link = "/login", state = "Login")
+
+    reader = csv.DictReader(open("blogpost.csv"))
+    return render_template("home.html", link = "/login", state = "Login", posts = reader)
 
 @app.route("/login", methods=["GET","POST"])
 def login():

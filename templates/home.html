@@ -73,7 +73,7 @@ p {
 </p>
 <center>
 
-<font size = "5" color = "cyan"><b>Share your story,
+<font size = "5" color = "cyan"><b>Share your story:
 {% if err %}
 <h3>{{err}}</h3>
 
@@ -82,15 +82,20 @@ p {
 <br>
 <font size = "4"><b>
 <form method="POST">
-  Post here:
 <br>
-<textarea rows = "10" name = "story"></textarea>
+<textarea rows = "20" cols = "50" name = "story"></textarea>
 <br>
 <input type="submit" name="button" value="Post">
   <input type="submit" name="button" value="Cancel">
 </form>
 </b></font>
-
+<br>
+<font size = "5" color = "cyan"><b>Read other posts: </b></font>
+<br><hr>
+<font size = "4">
+{% for keys in posts %}
+{{ "<b>Title: </b>" | safe + keys['title'] + "<br><b> Author: </b>" | safe + keys['uname'] + "<br><small>" | safe + keys['date'] + " at: " | safe + keys['time'] + "</small><br>" | safe + keys['content'] +"<br><hr><br><br>" | safe}}
+{% endfor %}
 </center>
 
 
